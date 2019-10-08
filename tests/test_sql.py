@@ -11,7 +11,8 @@ def test_create():
         '"company" INTEGER NOT NULL REFERENCES "company" ("pk"), '
         '"name" VARCHAR, '
         '"num_days_leave" INTEGER NOT NULL DEFAULT 0, '
-        "\"pay_grade\" VARCHAR NOT NULL DEFAULT 'JUNIOR' CHECK (\"pay_grade\" IN ('JUNIOR', 'INTERMEDIATE', 'SENIOR'))"
+        "\"pay_grade\" VARCHAR NOT NULL DEFAULT 'JUNIOR' CHECK (\"pay_grade\" IN ('JUNIOR', 'INTERMEDIATE', 'SENIOR')), "
+        '"remuneration" DECIMAL'
         ")"
     )
 
@@ -23,7 +24,7 @@ def test_insert():
     sql = insert(employee)
     assert (
         sql
-        == """INSERT INTO "employee" ("company", "name", "num_days_leave", "pay_grade") VALUES (1, NULL, 0, 'JUNIOR')"""
+        == """INSERT INTO "employee" ("company", "name", "num_days_leave", "pay_grade", "remuneration") VALUES (1, NULL, 0, 'JUNIOR', NULL)"""
     )
 
 

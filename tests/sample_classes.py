@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+from decimal import Decimal
 from enum import Enum, auto
 
 from dataclasses_ddl import Serial
@@ -30,3 +31,4 @@ class Employee:
     name: str = None
     num_days_leave: int = 0
     pay_grade: PayGrade = PayGrade.JUNIOR
+    remuneration: Decimal = None

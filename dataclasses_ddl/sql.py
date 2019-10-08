@@ -1,5 +1,6 @@
 from collections.abc import Iterable
 from dataclasses import _MISSING_TYPE, Field, fields, is_dataclass
+from decimal import Decimal
 from enum import Enum
 from itertools import chain
 
@@ -45,7 +46,13 @@ Todo:
  - deal with auto-generated values / computed values
 """
 
-DB_TYPE_MAP = {str: "VARCHAR", int: "INTEGER", Enum: "VARCHAR", Serial: "SERIAL"}
+DB_TYPE_MAP = {
+    str: "VARCHAR",
+    int: "INTEGER",
+    Enum: "VARCHAR",
+    Serial: "SERIAL",
+    Decimal: "DECIMAL",
+}
 CONSTRAINT_MAP = {
     "not_null": "NOT NULL",
     "default": "DEFAULT {}",
