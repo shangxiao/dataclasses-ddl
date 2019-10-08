@@ -6,4 +6,5 @@ setup(
     author_email="shang.xiao.sanders@gmail.com",
     packages=["dataclasses_ddl"],
     python_requires='>3.7.0',
+    install_requires=['psycopg2'],
 )
