@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+from datetime import date, datetime
 from decimal import Decimal
 from enum import Enum, auto
 
@@ -28,6 +29,8 @@ class Company:
 class Employee:
     pk: Serial = field(init=False, default=None)
     company: Company
+    start_date: date
+    last_login: datetime
     name: str = None
     num_days_leave: int = 0
     pay_grade: PayGrade = PayGrade.JUNIOR

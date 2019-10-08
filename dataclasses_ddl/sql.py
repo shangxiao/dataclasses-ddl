@@ -1,5 +1,6 @@
 from collections.abc import Iterable
 from dataclasses import _MISSING_TYPE, Field, fields, is_dataclass
+from datetime import date, datetime
 from decimal import Decimal
 from enum import Enum
 from itertools import chain
@@ -52,6 +53,8 @@ DB_TYPE_MAP = {
     Enum: "VARCHAR",
     Serial: "SERIAL",
     Decimal: "DECIMAL",
+    date: "DATE",
+    datetime: "TIMESTAMP",
 }
 CONSTRAINT_MAP = {
     "not_null": "NOT NULL",

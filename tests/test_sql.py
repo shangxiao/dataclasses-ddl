@@ -1,3 +1,5 @@
+from datetime import date, datetime
+
 from dataclasses_ddl import create_table, delete, insert, select, update
 
 from .sample_classes import Company, Employee
@@ -9,6 +11,8 @@ def test_create():
         'CREATE TABLE "employee" ('
         '"pk" SERIAL PRIMARY KEY, '
         '"company" INTEGER NOT NULL REFERENCES "company" ("pk"), '
+        '"start_date" DATE NOT NULL, '
+        '"last_login" TIMESTAMP NOT NULL, '
         '"name" VARCHAR, '
         '"num_days_leave" INTEGER NOT NULL DEFAULT 0, '
         "\"pay_grade\" VARCHAR NOT NULL DEFAULT 'JUNIOR' CHECK (\"pay_grade\" IN ('JUNIOR', 'INTERMEDIATE', 'SENIOR')), "
@@ -20,11 +24,11 @@ def test_create():
 def test_insert():
     company = Company(name="ACME")
     company.pk = 1
-    employee = Employee(company)
+    employee = Employee(company, date(2000, 1, 1), datetime(2019, 10, 1, 10))
     sql = insert(employee)
     assert (
         sql
-        == """INSERT INTO "employee" ("company", "name", "num_days_leave", "pay_grade", "remuneration") VALUES (1, NULL, 0, 'JUNIOR', NULL)"""
+        == """INSERT INTO "employee" ("company", "start_date", "last_login", "name", "num_days_leave", "pay_grade", "remuneration") VALUES (1, '2000-01-01'::date, '2019-10-01T10:00:00'::timestamp, NULL, 0, 'JUNIOR', NULL)"""
     )
 
 
