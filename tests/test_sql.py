@@ -1,4 +1,4 @@
-from dataclasses_orm import create_table, delete, insert, select, update
+from dataclasses_ddl import create_table, delete, insert, select, update
 
 from .sample_classes import Company, Employee
 
