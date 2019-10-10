@@ -19,9 +19,10 @@ class PayGrade(AutoName):
 
 @dataclass
 class Company:
-    pk: Serial = field(
-        init=False, default=None
-    )  # specify both init=False and default=None so we don't get an attribute error
+    #pk: Serial = field(
+        #init=False, default=None
+    #)  # specify both init=False and default=None so we don't get an attribute error
+    pk: Serial
     name: str
 
 
