@@ -86,3 +86,20 @@ def test_fetch_using_cursor_factory_model_type_set_via_attribute():
             assert result.pk == 1
             assert result.name == "acme"
             conn.rollback()
+
+
+def test_fetchall_using_cursor_factory():
+    with psycopg2.connect("dbname=dataclasses_orm") as conn:
+        with conn.cursor(cursor_factory=model_cursor_factory(Company)) as cur:
+            cur.execute("insert into company values (1, 'acme'), (2, 'ajax')")
+            cur.execute("select * from company")
+
+            results = cur.fetchall()
+
+            assert isinstance(results[0], Company)
+            assert results[0].pk == 1
+            assert results[0].name == "acme"
+            assert isinstance(results[1], Company)
+            assert results[1].pk == 2
+            assert results[1].name == "ajax"
+            conn.rollback()

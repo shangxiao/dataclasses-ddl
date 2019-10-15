@@ -22,3 +22,9 @@ class ModelCursor(RealDictCursor):
         if not self.model_type:
             raise NotImplementedError("model_type not set")
         return self.model_type(**res)
+
+    def fetchall(self):
+        res = super().fetchall()
+        if not self.model_type:
+            raise NotImplementedError("model_type not set")
+        return [self.model_type(**record) for record in res]
