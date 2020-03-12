@@ -12,6 +12,7 @@ def cursor():
     connection.rollback()
 
 
+@pytest.mark.skip
 def test_create(cursor):
     company_sql = create_table(Company)
     cursor.execute(company_sql)

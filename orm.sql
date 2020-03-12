@@ -1,0 +1,2 @@
+CREATE TABLE "company" ("pk" SERIAL PRIMARY KEY, "name" VARCHAR NOT NULL);
+CREATE TABLE "employee" ("pk" SERIAL PRIMARY KEY, "company" INTEGER NOT NULL REFERENCES "company" ("pk"), "name" VARCHAR, "num_days_leave" INTEGER NOT NULL DEFAULT 0, "pay_grade" VARCHAR NOT NULL DEFAULT 'JUNIOR' CHECK ("pay_grade" IN ('JUNIOR', 'INTERMEDIATE', 'SENIOR')));
